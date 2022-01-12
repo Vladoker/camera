@@ -52,10 +52,12 @@ document.addEventListener("DOMContentLoaded", function(event) {
   custom_popup.addEventListener("click", (e) => { // close all popup
     const array = e.target.classList;
     if(array.contains("custom--popup")){
+      offCamera();
       custom_popup.classList.remove("show");
     }
   });
   close_popup.addEventListener("click", () => { // close popup 'cross'
+    offCamera();
     custom_popup.classList.remove("show");
   });
   camera_back.addEventListener("click", () => { // close camera
