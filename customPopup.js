@@ -41,26 +41,34 @@ document.addEventListener("DOMContentLoaded", function(event) {
       input.click();
     });
   }
+  function offCamera(){
+    if(stream){
+      stream.stop();
+    }
+    container_camera.classList.remove("show");
+  }
 
 
-  custom_popup.addEventListener("click", (e) => {
+  custom_popup.addEventListener("click", (e) => { // close all popup
     const array = e.target.classList;
     if(array.contains("custom--popup")){
       custom_popup.classList.remove("show");
     }
   });
-  close_popup.addEventListener("click", () => {
+  close_popup.addEventListener("click", () => { // close popup 'cross'
     custom_popup.classList.remove("show");
   });
-  camera_back.addEventListener("click", () => {
-    container_camera.classList.remove("show");
+  camera_back.addEventListener("click", () => { // close camera
+    offCamera();
   });
 
-  face_btn.addEventListener("click", function(){ turnOnTheCamera("face") });
-  front_btn.addEventListener("click", function(){ turnOnTheCamera("front") });
-  back_btn.addEventListener("click", function(){ turnOnTheCamera("back") });
+  // open camera
+  face_btn.addEventListener("click", function(){ turnOnTheCamera("face") }); 
+  front_btn.addEventListener("click", function(){ turnOnTheCamera("front") }); 
+  back_btn.addEventListener("click", function(){ turnOnTheCamera("back") }); 
 
-  photo_icon.addEventListener("click", () => {
+  
+  photo_icon.addEventListener("click", () => { // take a picture
     const mediaStreamTrack = stream.getVideoTracks()[0];
     const imageCapture = new ImageCapture(mediaStreamTrack);
 
@@ -70,7 +78,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     })
     .catch(console.error)
     .finally(() => {
-      container_camera.classList.remove("show");
+      offCamera();
       custom_popup.classList.remove("show");
     });
     
