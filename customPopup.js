@@ -1,4 +1,4 @@
-document.addEventListener("load", function(event) {
+document.addEventListener("DOMContentLoaded", function(event) {
   const custom_popup = document.querySelector("#custom_popup");
   const close_popup = document.querySelector("#close_popup");
   const camera_back = document.querySelector("#camera_back");
@@ -25,7 +25,6 @@ document.addEventListener("load", function(event) {
     eventName = e;
     navigator.mediaDevices.getUserMedia({'video': true})
     .then(mediaStream => {   
-      console.log('camera: ', camera);
       camera.srcObject = mediaStream;
       stream = mediaStream;
       container_camera.classList.add("show");
@@ -43,6 +42,7 @@ document.addEventListener("load", function(event) {
   }
   function offCamera(){
     container_camera.classList.remove("show");
+    console.dir(stream);
     if(stream){
       stream.stop();
     }
@@ -113,4 +113,4 @@ document.addEventListener("load", function(event) {
 
   });
   
-}, false);
+});
