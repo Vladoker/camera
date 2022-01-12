@@ -27,7 +27,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
     navigator.mediaDevices.getUserMedia({'video': true})
     .then(mediaStream => {   
       camera.srcObject = mediaStream;
-      camera.play();
       stream = mediaStream;
       container_camera.classList.add("show");
     })
@@ -43,7 +42,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
     });
   }
   function offCamera(){
-    console.dir(stream);
+    console.dir("stream", stream);
+    console.dir("camera", camera);
     if(stream){
       stream.stop();
     }
