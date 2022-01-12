@@ -27,6 +27,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     navigator.mediaDevices.getUserMedia({'video': true})
     .then(mediaStream => {   
       camera.srcObject = mediaStream;
+      camera.play();
       stream = mediaStream;
       container_camera.classList.add("show");
     })
@@ -42,6 +43,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     });
   }
   function offCamera(){
+    console.dir(stream);
     if(stream){
       stream.stop();
     }
@@ -52,13 +54,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
   custom_popup.addEventListener("click", (e) => { // close all popup
     const array = e.target.classList;
     if(array.contains("custom--popup")){
-      offCamera();
       custom_popup.classList.remove("show");
+      offCamera();
     }
   });
   close_popup.addEventListener("click", () => { // close popup 'cross'
-    offCamera();
     custom_popup.classList.remove("show");
+    offCamera();
   });
   camera_back.addEventListener("click", () => { // close camera
     offCamera();
@@ -70,7 +72,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
   back_btn.addEventListener("click", function(){ turnOnTheCamera("back") }); 
 
   
-  photo_icon.addEventListener("click", () => { // take a picture
+  // take a picture
+  photo_icon.addEventListener("click", () => { 
     const mediaStreamTrack = stream.getVideoTracks()[0];
     const imageCapture = new ImageCapture(mediaStreamTrack);
 
@@ -80,8 +83,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
     })
     .catch(console.error)
     .finally(() => {
-      offCamera();
       custom_popup.classList.remove("show");
+      offCamera();
     });
     
   });
