@@ -1,0 +1,164 @@
+.custom--popup.show {
+  visibility: visible;
+  opacity: 1;
+}
+.custom--popup {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  z-index: 99999;
+  background: rgba(0,0,2,.8);
+  top: 0;
+  left: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 30px 0;
+  visibility: hidden;
+  opacity: 0;
+  transition: all .3s ease-in-out;
+  box-sizing: border-box;
+}
+.custom--popup .item {
+  width: 100%;
+  max-width: 480px;
+  margin: auto;
+  border-radius: 10px;
+  background-color: #fff;
+}
+.custom--popup .item .popup-content {
+  display: flex;
+  flex-direction: column;
+  padding: 32px 36px;
+}
+.custom--popup .item .popup-content .header {
+  display: flex;
+  align-items: center;
+  padding-bottom: 30px;
+}
+.pb-0 {
+  padding-bottom: 0!important;
+}
+.custom--popup .item .popup-content .header .title {
+  font-size: 24px;
+  line-height: 24px;
+  color: #000002;
+  font-weight: 700;
+}
+.custom--popup .item .popup-content .close {
+  display: flex;
+  padding: 0;
+  margin-left: auto;
+}
+.custom--popup button {
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  transition: all .2s ease;
+}
+.custom--popup .content .text_popup {
+  padding: 16px 0 24px;
+}
+.custom--popup .content .text_popup p:first-child {
+  padding-bottom: 8px;
+}
+.custom--popup .content .text_popup p {
+  font-size: 15px;
+  line-height: 18px;
+  color: #000002;
+  text-align: left;
+  max-width: 375px;
+}
+/* //////////////////// */
+.custom--popup .btn{
+  width: 100%;
+  min-height: 40px;
+  background: orange;
+  color: white;
+  font-size: 15px;
+  border-radius: 8px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  user-select: none;
+}
+
+.custom--popup input[type*="file"] {
+  display: none;
+}
+
+.custom--popup .photo-name {
+  font-size: 12px;
+  padding-left: 15px;
+  color: gray;
+  max-width: 320px;
+  overflow: hidden;
+}
+
+.custom--popup .footer {
+  padding-top: 50px;
+}
+.custom--popup .btn_send {
+  width: 100%;
+  min-height: 40px;
+  background: green;
+  color: white;
+  font-size: 15px;
+  border-radius: 8px;
+  font-weight: bold;
+}
+.custom--popup .item {
+  position: relative;
+  overflow: hidden;
+}
+.container_camera {
+  position: absolute;
+  top: 0;
+  left: -500px;
+  border-radius: 5px;
+  width: 100%;
+  height: 100%;
+  transition: 0.5s;
+}
+video.camera {
+  background-color: black;
+  width: 100%;
+  height: 100%;
+}
+.container_camera.show {
+  left: 0px;
+}
+.photo_icon {
+  width: auto;
+  height: 75px;
+  position: absolute;
+  z-index: 2;
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  cursor: pointer;
+}
+.arrow_icon {
+  width: 20px;
+  position: absolute;
+  z-index: 2;
+  top: 20px;
+  left: 20px;
+  cursor: pointer;
+}
+
+@media(max-width: 430px){
+  .custom--popup {
+    padding: 0;
+  }
+  .custom--popup .item .popup-content {
+    padding: 15px;
+  }
+  .custom--popup .item {
+   height: 100%;
+   border: none;
+   border-radius: 0;
+  }
+}
