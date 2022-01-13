@@ -43,12 +43,12 @@ document.addEventListener("DOMContentLoaded", function(event) {
       input.accept = "image/*";
       input.addEventListener("change", () => {
         photos[eventName] = input.files[0];
-        setTimeout(()=> {
-          element.target.disabled = false;
-          element.target.style.opacity = "1";
-        },1000);
       });
       input.click();
+      setTimeout(()=> {
+        element.target.disabled = false;
+        element.target.style.opacity = "1";
+      },1000);
     });
   }
   function offCamera(){
