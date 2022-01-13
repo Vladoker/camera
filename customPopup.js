@@ -46,11 +46,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 
 
-  function turnOnTheCamera(photoName, element){
+  function turnOnTheCamera(photoName, element, front = true){
     eventName = photoName;
     element.target.disabled = true;
     element.target.style.opacity = "0.5";
-    navigator.mediaDevices.getUserMedia({'video': { frameRate: { ideal: 10, max: 15 } }})
+    navigator.mediaDevices.getUserMedia({'video': { 'facingMode': (front ? 'user' : 'environment') } }) //'frameRate': { ideal: 10, max: 15 },
     .then(mediaStream => {
       
       if ("srcObject" in camera) {
@@ -71,6 +71,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
       },1000);
     })
     .catch(er => {
+      alert("camera not detected");
       console.error(er);
       let input = document.createElement("input");
       input.type = "file";
@@ -110,13 +111,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
   // open camera
   face_btn.addEventListener("click", e => { 
-    turnOnTheCamera("face", e);
+    turnOnTheCamera("face", e, true);
   }); 
   front_btn.addEventListener("click", e => { 
-    turnOnTheCamera("front", e);
+    turnOnTheCamera("front", e, false);
   }); 
   back_btn.addEventListener("click", e => { 
-    turnOnTheCamera("back", e);
+    turnOnTheCamera("back", e, false);
   }); 
 
   
