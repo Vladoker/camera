@@ -22,9 +22,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 
   function turnOnTheCamera(photoName, element){
+    console.log("turnOnTheCamera");
+    eventName = photoName;
     element.target.disabled = true;
     element.target.style.opacity = "0.5";
-    eventName = photoName;
     navigator.mediaDevices.getUserMedia({'video': true})
     .then(mediaStream => {   
       stream = mediaStream;
@@ -33,11 +34,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
       setTimeout(()=> {
         element.target.disabled = false;
         element.target.style.opacity = "1";
-      },1000)
+      },1000);
     })
     .catch(er => {
-      element.target.disabled = true;
-      element.target.style.opacity = "0.5";
       console.error(er);
       let input = document.createElement("input");
       input.type = "file";
@@ -47,7 +46,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         setTimeout(()=> {
           element.target.disabled = false;
           element.target.style.opacity = "1";
-        },1000)
+        },1000);
       });
       input.click();
     });
@@ -77,12 +76,15 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
   // open camera
   face_btn.addEventListener("click", e => { 
+    console.log("on face");
     turnOnTheCamera("face", e);
   }); 
   front_btn.addEventListener("click", e => { 
+    console.log("on front");
     turnOnTheCamera("front", e);
   }); 
   back_btn.addEventListener("click", e => { 
+    console.log("on back");
     turnOnTheCamera("back", e);
   }); 
 
