@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     eventName = photoName;
     element.target.disabled = true;
     element.target.style.opacity = "0.5";
-    navigator.mediaDevices.getUserMedia({'video': true})
+    navigator.mediaDevices.getUserMedia({'video': { frameRate: { ideal: 10, max: 15 } }})
     .then(mediaStream => {
       
       if ("srcObject" in camera) {
