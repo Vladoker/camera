@@ -150,6 +150,13 @@ video.camera {
   left: 20px;
   cursor: pointer;
 }
+.pasport_maska {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
 
 @media(max-width: 430px){
   .custom--popup {

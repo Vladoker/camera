@@ -6,55 +6,122 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./customPopup.css">
   <title>Camera</title>
+  <script src="customPopup.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      let btn = document.querySelector('#open_modal');
+      let popup = document.querySelector('#custom_popup');
+      btn.addEventListener("click", () => {
+        popup.classList.add("show");
+      });
+    });
+  </script>
 </head>
 <body>
 
-  <button onclick="document.querySelector('#custom_popup').classList.add('show')">Open Camera</button>
+  <button id="open_modal">Open Camera</button>
 
 
 
-<div class="custom--popup" id="custom_popup">
-  <div class="item">
-    <div class="popup-content">
-      <div class="header pb-0">
-        <div class="title">Идентификация личности</div>
-        <button class="close close-form-support" id="close_popup">
-          <img src="./img/close.svg" alt="close" />
-        </button>
-      </div>
-      <div class="content">
-        <div class="text_popup">
-          <div class="comment">
-            <p>
-              Чтобы проверить идентификацию, необходимо иметь устройство/телефон, оборудованный камерой, чтобы сделать следующие снимки:
-            </p>
+  <div class="custom--popup" id="custom_popup">
+    <div class="item">
+      <div class="popup-content">
+        <div class="header pb-0">
+          <div class="title">Идентификация личности</div>
+          <button class="close close-form-support" id="close_popup">
+            <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="36" height="36" rx="18" fill="#474747"/>
+              <path d="M22.375 22.375L13.625 13.625" stroke="white" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M22.375 13.625L13.625 22.375" stroke="white" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+        <div class="content">
+          <div class="text_popup">
+            <div class="comment">
+              <p>
+                Чтобы проверить идентификацию, необходимо иметь устройство/телефон, оборудованный камерой, чтобы сделать следующие снимки:
+              </p>
+            </div>
+  
           </div>
-
+  
+          <div class="row">
+            <button class="btn" id="face_btn">Фото лица</button>
+            <button class="btn" id="front_btn">Удостоверения личности лицевая сторона</button>
+            <button class="btn" id="back_btn">Удостоверения личности обратная сторона</button>
+          </div>
+  
+          <div class="footer">
+            <button class="btn_send" id="sendPhotos">Загрузить</button>
+          </div>
+  
+  
         </div>
-
-        <div class="row">
-          <button class="btn" id="face_btn">Фото лица</button>
-          <button class="btn" id="front_btn">Удостоверения личности лицевая сторона</button>
-          <button class="btn" id="back_btn">Удостоверения личности обратная сторона</button>
-        </div>
-
-        <div class="footer">
-          <button class="btn_send" id="sendPhotos">Загрузить</button>
-        </div>
-
-
       </div>
-    </div>
+  
+      <div class="container_camera" id="container_camera">
+         <div id="camera_back" class="arrow_icon">
+            <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+              width="20px"  viewBox="0 0 512.000000 512.000000"
+              preserveAspectRatio="xMidYMid meet">
 
-    <div class="container_camera" id="container_camera">
-      <img src="./img/left.svg" id="camera_back" class="arrow_icon" alt="back">
-      <video class="camera" id="camera" autoplay></video>
-      <img class="photo_icon" id="photo_icon" src="./img/photo_icon.png" alt="photoClick">
+              <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)"
+              fill="#fff" stroke="none">
+              <path d="M2005 4457 c-105 -35 -121 -50 -922 -850 -740 -740 -794 -796 -823
+              -858 -60 -129 -60 -249 0 -378 29 -62 83 -118 828 -863 739 -739 802 -799 862
+              -827 169 -79 361 -47 489 80 125 126 158 314 84 483 -24 55 -67 102 -437 474
+              l-410 412 1404 0 c854 0 1428 4 1464 10 184 30 327 174 357 359 36 224 -127
+              444 -357 481 -36 6 -610 10 -1464 10 l-1404 0 405 408 c480 482 464 460 464
+              652 0 111 -1 118 -34 182 -41 83 -129 169 -208 205 -48 22 -76 27 -158 30 -64
+              2 -114 -2 -140 -10z"/>
+              </g>
+            </svg>
+         </div>
+        <video class="camera" id="camera" autoplay></video>
+
+        <div class="pasport_maska" style="display: none;">
+          <svg class="getid-camera__overlay" data-role="camera-overlay" width="100%" viewBox="0 0 2048 1152">
+            <g fill-rule="evenodd" fill="#0E1C2C80" stroke-width="3">
+              <path d="M0,0  h2048  v1152 h-2048 z
+            M332.79999999999995, 217.2
+              v717.5999999999999
+              C 332.79999999999995 1036.8 332.79999999999995 1036.8 434.79999999999995 1036.8
+              h1178.4
+              C 1715.2 1036.8 1715.2 1036.8 1715.2 934.8
+              v-717.5999999999999
+              C 1715.2 115.19999999999999 1715.2 115.19999999999999 1613.2 115.19999999999999
+              h-1178.4
+              C 332.79999999999995 115.19999999999999 332.79999999999995 115.19999999999999 332.79999999999995 217.2
+              z">
+            </path>
+          </g>
+          <path fill="none" stroke="var(--getid-warning-color)" stroke-width="20px" stroke-linecap="round" d="M332.79999999999995, 217.2
+              v717.5999999999999
+            "></path><path fill="none" stroke="var(--getid-warning-color)" stroke-width="20px" stroke-linecap="round" d="M434.79999999999995, 115.19999999999999
+              h1178.4
+            "></path><path fill="none" stroke="var(--getid-warning-color)" stroke-width="20px" stroke-linecap="round" d="M1715.2, 934.8
+              v-717.5999999999999
+            "></path><path fill="none" stroke="var(--getid-warning-color)" stroke-width="20px" stroke-linecap="round" d="M1613.2, 1036.8
+              h-1178.4
+            "></path><path fill="none" stroke="var(--getid-warning-color)" stroke-width="20px" stroke-linecap="round" d="M434.79999999999995, 115.19999999999999
+              C 332.79999999999995 115.19999999999999 332.79999999999995 115.19999999999999 332.79999999999995 217.2
+              "></path><path fill="none" stroke="var(--getid-warning-color)" stroke-width="20px" stroke-linecap="round" d="M1715.2, 217.2
+              C 1715.2 115.19999999999999 1715.2 115.19999999999999 1613.2 115.19999999999999
+            "></path><path fill="none" stroke="var(--getid-warning-color)" stroke-width="20px" stroke-linecap="round" d="M1715.2, 934.8
+              C 1715.2 1036.8 1715.2 1036.8 1613.2 1036.8
+            "></path><path fill="none" stroke="var(--getid-warning-color)" stroke-width="20px" stroke-linecap="round" d="M332.79999999999995, 934.8
+              C 332.79999999999995 1036.8 332.79999999999995 1036.8 434.79999999999995 1036.8
+            ">
+          </path>
+          </svg>
+        </div>
+
+        <img class="photo_icon" id="photo_icon" src="https://i.ibb.co/28FKDM5/photo-icon.png" alt="photoClick">
+      </div>
+      
     </div>
-    
   </div>
-</div>
 
-<script src="customPopup.js"></script>
 </body>
 </html>
