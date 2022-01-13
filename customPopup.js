@@ -22,7 +22,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 
   function turnOnTheCamera(photoName, element){
-    console.log("turnOnTheCamera");
     eventName = photoName;
     element.target.disabled = true;
     element.target.style.opacity = "0.5";
@@ -76,15 +75,12 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
   // open camera
   face_btn.addEventListener("click", e => { 
-    console.log("on face");
     turnOnTheCamera("face", e);
   }); 
   front_btn.addEventListener("click", e => { 
-    console.log("on front");
     turnOnTheCamera("front", e);
   }); 
   back_btn.addEventListener("click", e => { 
-    console.log("on back");
     turnOnTheCamera("back", e);
   }); 
 
