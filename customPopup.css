@@ -157,8 +157,28 @@ video.camera {
   width: 100%;
   height: 100%;
 }
+.face_maska {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.face_maska .maska {
+  height: 100%;
+}
+.face_maska .phone {
+  display: none;
+}
+
 
 @media(max-width: 430px){
+  .face_maska .desc {
+    display: none;
+  }
+  .face_maska .phone {
+    display: inherit;
+  }
   .custom--popup {
     padding: 0;
   }
