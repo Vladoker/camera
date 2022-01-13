@@ -21,52 +21,70 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 
 
-  function turnOnTheCamera(e){
-    eventName = e;
+  function turnOnTheCamera(photoName, element){
+    element.target.disabled = true;
+    element.target.style.opacity = "0.5";
+    eventName = photoName;
     navigator.mediaDevices.getUserMedia({'video': true})
     .then(mediaStream => {   
-      camera.srcObject = mediaStream;
       stream = mediaStream;
+      camera.srcObject = mediaStream;
       container_camera.classList.add("show");
+      setTimeout(()=> {
+        element.target.disabled = false;
+        element.target.style.opacity = "1";
+      },1000)
     })
     .catch(er => {
+      element.target.disabled = true;
+      element.target.style.opacity = "0.5";
       console.error(er);
       let input = document.createElement("input");
       input.type = "file";
       input.accept = "image/*";
       input.addEventListener("change", () => {
         photos[eventName] = input.files[0];
+        setTimeout(()=> {
+          element.target.disabled = false;
+          element.target.style.opacity = "1";
+        },1000)
       });
       input.click();
     });
   }
   function offCamera(){
     container_camera.classList.remove("show");
-    console.dir(stream);
     if(stream){
-      stream.stop();
+      stream.getTracks().forEach(track => track.stop());
     }
   }
 
   custom_popup.addEventListener("click", (e) => { // close all popup
     const array = e.target.classList;
     if(array.contains("custom--popup")){
-      custom_popup.classList.remove("show");
       offCamera();
+      custom_popup.classList.remove("show");
+      photos = {};
     }
   });
   close_popup.addEventListener("click", () => { // close popup 'cross'
-    custom_popup.classList.remove("show");
     offCamera();
+    custom_popup.classList.remove("show");
   });
   camera_back.addEventListener("click", () => { // close camera
     offCamera();
   });
 
   // open camera
-  face_btn.addEventListener("click", function(){ turnOnTheCamera("face") }); 
-  front_btn.addEventListener("click", function(){ turnOnTheCamera("front") }); 
-  back_btn.addEventListener("click", function(){ turnOnTheCamera("back") }); 
+  face_btn.addEventListener("click", e => { 
+    turnOnTheCamera("face", e);
+  }); 
+  front_btn.addEventListener("click", e => { 
+    turnOnTheCamera("front", e);
+  }); 
+  back_btn.addEventListener("click", e => { 
+    turnOnTheCamera("back", e);
+  }); 
 
   
   // take a picture
