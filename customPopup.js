@@ -18,6 +18,31 @@ document.addEventListener("DOMContentLoaded", function(event) {
   let eventName = "";
   let photos = {};
 
+  if (navigator.mediaDevices === undefined) {
+    navigator.mediaDevices = {};
+  }
+
+  if (navigator.mediaDevices.getUserMedia === undefined) {
+    navigator.mediaDevices.getUserMedia = function(constraints) {
+  
+      // Сначала, если доступно, получим устаревшее getUserMedia
+  
+    var getUserMedia = navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
+  
+     //Некоторые браузеры не реализуют его, тогда вернём отменённый промис
+     // с ошибкой для поддержания последовательности интерфейса
+  
+      if (!getUserMedia) {
+        return Promise.reject(new Error('getUserMedia is not implemented in this browser'));
+      }
+  
+      // Иначе, обернём промисом устаревший navigator.getUserMedia
+  
+      return new Promise(function(resolve, reject) {
+        getUserMedia.call(navigator, constraints, resolve, reject);
+      });
+    }
+  }
 
 
 
@@ -26,9 +51,19 @@ document.addEventListener("DOMContentLoaded", function(event) {
     element.target.disabled = true;
     element.target.style.opacity = "0.5";
     navigator.mediaDevices.getUserMedia({'video': true})
-    .then(mediaStream => {   
+    .then(mediaStream => {
+      
+      if ("srcObject" in camera) {
+        camera.srcObject = mediaStream;
+      } else {
+        // Не используем в новых браузерах
+        camera.src = window.URL.createObjectURL(mediaStream);
+      }
+      camera.onloadedmetadata = function(e) {
+        camera.play();
+      };
+      
       stream = mediaStream;
-      camera.srcObject = mediaStream;
       container_camera.classList.add("show");
       setTimeout(()=> {
         element.target.disabled = false;
