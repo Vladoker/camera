@@ -124,18 +124,21 @@ document.addEventListener("DOMContentLoaded", function(event) {
   
   // take a picture
   photo_icon.addEventListener("click", () => { 
-    const mediaStreamTrack = stream.getVideoTracks()[0];
-    const imageCapture = new ImageCapture(mediaStreamTrack);
-
-    imageCapture.takePhoto()
-    .then(blob => {
-      photos[eventName] = blob;
-    })
-    .catch(console.error)
-    .finally(() => {
-      offCamera();
-    });
-    
+    alert("click");
+    if(stream){
+      alert("stream is avalible");
+      const mediaStreamTrack = stream.getVideoTracks()[0];
+      const imageCapture = new ImageCapture(mediaStreamTrack);
+  
+      imageCapture.takePhoto()
+      .then(blob => {
+        photos[eventName] = blob;
+      })
+      .catch(console.error)
+      .finally(() => {
+        offCamera();
+      });
+    }
   });
 
   send.addEventListener("click", function () {
