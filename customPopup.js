@@ -133,17 +133,23 @@ document.addEventListener("DOMContentLoaded", function(event) {
       imageCapture.takePhoto()
       .then(blob => {
         photos[eventName] = blob;
+        alert("save photo");
       })
-      .catch(console.error)
+      .catch(()=> {
+        alert("error save photo");
+      })
       .finally(() => {
+        alert("close camera");
         offCamera();
       });
     }
   });
 
-  send.addEventListener("click", function () {
+  send.addEventListener("click", function (e) {
 
     if(Object.values(photos).length >= 3){
+      e.target.disabled = true;
+      e.target.style.opacity = "0.5";
       const formData = new FormData();
 
       formData.append('face', photos.face); // Ставим фотографию лица в спецальную форму для отправки
@@ -158,12 +164,15 @@ document.addEventListener("DOMContentLoaded", function(event) {
       })
       .then(function(serverResponce) {
         console.log(serverResponce);
+
       })
       .catch(function(err) {
         console.error(err);
       })
       .finally(function() {
         custom_popup.classList.remove("show");
+        e.target.disabled = false;
+        e.target.style.opacity = "1";
       });
     }
 
