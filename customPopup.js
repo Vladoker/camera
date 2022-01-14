@@ -44,6 +44,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
     }
   }
 
+  
+
 
 
   function turnOnTheCamera(photoName, element, front = true){
