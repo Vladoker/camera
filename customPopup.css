@@ -127,7 +127,6 @@ video.camera {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  pointer-events: none;
 }
 .container_camera.show {
   left: 0px;
