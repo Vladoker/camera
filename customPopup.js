@@ -126,22 +126,16 @@ document.addEventListener("DOMContentLoaded", function(event) {
   
   // take a picture
   photo_icon.addEventListener("click", () => { 
-    alert("click");
     if(stream){
-      alert("stream is avalible");
       const mediaStreamTrack = stream.getVideoTracks()[0];
       const imageCapture = new ImageCapture(mediaStreamTrack);
   
       imageCapture.takePhoto()
       .then(blob => {
         photos[eventName] = blob;
-        alert("save photo");
       })
-      .catch(()=> {
-        alert("error save photo");
-      })
+      .catch(console.error)
       .finally(() => {
-        alert("close camera");
         offCamera();
       });
     }

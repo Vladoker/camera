@@ -17,7 +17,7 @@
  * limitations under the License.
  */
 
- let ImageCapture = window.ImageCapture;
+  let ImageCapture = window.ImageCapture;
 
  if (typeof ImageCapture === 'undefined') {
    ImageCapture = class {
