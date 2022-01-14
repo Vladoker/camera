@@ -14,6 +14,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
   const send = document.querySelector("#sendPhotos");
 
+  const face_maska = document.querySelector(".face_maska");
+  const pasport_maska = document.querySelector(".pasport_maska");
+
   let stream = false;
   let eventName = "";
   let photos = {};
@@ -75,13 +78,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
     .catch(er => {
       alert("camera not detected");
       console.error(er);
-      let input = document.createElement("input");
-      input.type = "file";
-      input.accept = "image/*";
-      input.addEventListener("change", () => {
-        photos[eventName] = input.files[0];
-      });
-      input.click();
       setTimeout(()=> {
         element.target.disabled = false;
         element.target.style.opacity = "1";
@@ -93,6 +89,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
     if(stream){
       stream.getTracks().forEach(track => track.stop());
     }
+    face_maska.classList.add("hidden");
+    pasport_maska.classList.add("hidden");
   }
 
   custom_popup.addEventListener("click", (e) => { // close all popup
@@ -112,15 +110,39 @@ document.addEventListener("DOMContentLoaded", function(event) {
     offCamera();
   });
 
+
+  function createFileInput(name){
+    let input = document.createElement("input");
+    input.type = "file";
+    input.accept = "image/*";
+    input.addEventListener("change", () => {
+      photos[name] = input.files[0];
+    });
+    input.click();
+  }
+
   // open camera
   face_btn.addEventListener("click", e => { 
+    face_maska.classList.remove("hidden");
     turnOnTheCamera("face", e, true);
   }); 
   front_btn.addEventListener("click", e => { 
-    turnOnTheCamera("front", e, false);
+    if(window.innerWidth <= 430){
+      pasport_maska.classList.remove("hidden");
+      turnOnTheCamera("front", e, false);
+    }
+    else {
+      createFileInput("front");
+    }
   }); 
   back_btn.addEventListener("click", e => { 
-    turnOnTheCamera("back", e, false);
+    if(window.innerWidth <= 430){
+      pasport_maska.classList.remove("hidden");
+      turnOnTheCamera("back", e, false);
+    }
+    else {
+      createFileInput("back");
+    }
   }); 
 
   
