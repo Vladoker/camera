@@ -164,7 +164,7 @@ video.camera {
   width: 100%;
   height: 100%;
 }
-.face_maska .maska {
+.face_maska .maska, .pasport_maska .maska {
   height: 100%;
 }
 .face_maska .phone {
