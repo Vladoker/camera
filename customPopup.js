@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     eventName = photoName;
     element.target.disabled = true;
     element.target.style.opacity = "0.5";
-    navigator.mediaDevices.getUserMedia({'video': { 'facingMode': (front ? 'user' : 'environment') } }) //'frameRate': { ideal: 10, max: 15 },
+    navigator.mediaDevices.getUserMedia({"audio": false, 'video': { 'facingMode': (front ? 'user' : 'environment') } }) //'frameRate': { ideal: 10, max: 15 },
     .then(mediaStream => {
       
       if ("srcObject" in camera) {
@@ -104,6 +104,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
   close_popup.addEventListener("click", () => { // close popup 'cross'
     offCamera();
     custom_popup.classList.remove("show");
+    photos = {};
   });
   camera_back.addEventListener("click", () => { // close camera
     offCamera();
