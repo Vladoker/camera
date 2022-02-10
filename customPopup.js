@@ -78,7 +78,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     })
     .catch(er => {
       const warningNotofication = document.querySelector("#warning_notofication").textContent ?? "Camera not detection";
-      if(window.innerWidth >= 400){
+      if(window.innerWidth >= 400 && Toastify){
         Toastify({
           text: warningNotofication,
           duration: 7000,
