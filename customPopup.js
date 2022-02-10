@@ -76,7 +76,23 @@ document.addEventListener("DOMContentLoaded", function(event) {
       },1000);
     })
     .catch(er => {
-      alert("camera not detected");
+      let warningNotofication = document.querySelector("#warning_notofication");
+      if(warningNotofication){
+        warningNotofication = warningNotofication.textContent;
+      }
+      if(window.innerWidth >= 430){
+        Toastify({
+          text: warningNotofication,
+          duration: 7000,
+          close: true,
+          style: {
+            background: "linear-gradient(to right, rgb(216 19 19), rgb(192 84 84))",
+          }
+        }).showToast();
+      }
+      else {
+        alert(warningNotofication);
+      }
       console.error(er);
       setTimeout(()=> {
         element.target.disabled = false;
