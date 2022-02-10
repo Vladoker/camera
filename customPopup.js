@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", function(event) {
-  
   const custom_popup = document.querySelector("#custom_popup");
   const close_popup = document.querySelector("#close_popup");
   const camera_back = document.querySelector("#camera_back");
@@ -77,21 +76,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
       },1000);
     })
     .catch(er => {
-      const warningNotofication = document.querySelector("#warning_notofication").textContent ?? "Camera not detection";
-      if(window.innerWidth >= 400){
-        Toastify({
-          text: warningNotofication,
-          duration: 7000,
-          close: true,
-          style: {
-            background: "linear-gradient(to right, rgb(216 19 19), rgb(192 84 84))",
-          }
-        }).showToast();
-      }
-      else {
-        alert(warningNotofication);
-      }
-
+      alert("camera not detected");
       console.error(er);
       setTimeout(()=> {
         element.target.disabled = false;
