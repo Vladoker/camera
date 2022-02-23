@@ -352,7 +352,7 @@ try {
   });
 
   send.addEventListener("click", function (e) {
-    if(Object.values(photos).length >= 3){ // Проверку можно убрать - Проверка на наличии трёх фотографий
+    if( true && Object.values(photos).length >= 3){ // Проверку можно убрать - Проверка на наличии трёх фотографий
       e.target.disabled = true;
       e.target.style.opacity = "0.5";
       const formData = new FormData();
